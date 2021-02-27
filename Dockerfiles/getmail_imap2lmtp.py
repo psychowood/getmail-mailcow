@@ -78,12 +78,12 @@ class Getmail(threading.Thread):
             logging.error("Server doesn't support IDLE!!")
             sys.exit()
         
-#        if self.imap_debug:
-#          self.imap.debug = True
-#          logging.basicConfig(level=logging.DEBUG)
-#        else:
-#          self.imap.debug = False
-#          logging.basicConfig(level=logging.INFO)
+        if self.imap_debug:
+         self.imap.debug = True
+          logging.basicConfig(level=logging.DEBUG)
+        else:
+          self.imap.debug = False
+          logging.basicConfig(level=logging.INFO)
 
         self.imap.select_folder(self.imap_sync_folder)
 
@@ -93,7 +93,7 @@ class Getmail(threading.Thread):
     def imap_close_connection(self):
         if self.imap != None:
           status_logout = self.imap.logout()
-          #logging.info("Close IMAP connection - status_logout: %s" % (status_logout))
+          logging.info("Close IMAP connection - status_logout: %s" % (status_logout))
 
     def imap_idle(self):
         self.imap_start_connection()
